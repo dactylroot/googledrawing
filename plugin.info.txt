@@ -1,0 +1,7 @@
+base   googledrawing
+author Linus Brimstedt
+email  linus@brimstedt.se
+date   2011-02-27
+name   googledrawing plugin
+desc   Shows a published google drawing as an image.
+url    http://www.dokuwiki.org/plugin:googledrawing
