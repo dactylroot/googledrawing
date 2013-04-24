@@ -47,6 +47,9 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
 		$baseUrl = $this->getGoogleUrl();
 		$baseUrl = str_replace('/', '\\/', $baseUrl);
 		
+                $this->Lexer->addSpecialPattern(
+                        "{$baseUrl}drawings\\/d\\/[a-zA-Z\\-_0-9]+(?:\\/edit)?(?:\\&w=[0-9]+)?(?:\\&h=[0-9]+)?"
+                        ,$mode,'plugin_googledrawing');
 		$this->Lexer->addSpecialPattern(
 			"{$baseUrl}drawings\\/[a-z]+\\?id=[a-zA-Z\\-_0-9]+(?:\\&w=[0-9]+\\&h=[0-9]+)?"
 			,$mode,'plugin_googledrawing'); 
@@ -81,13 +84,22 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
 	}
 	else
 	{
-		
-		preg_match(
-			 "/{$baseUrl}drawings\\/[a-z]+\\?id=([a-zA-Z\\-_0-9]+)(?:&w=([0-9]+))?/"
-                        , $conf, $match);
+                if(preg_match(
+                            "/{$baseUrl}drawings\\/d\\/([a-zA-Z\\-_0-9]+)(?:\\/edit)?(?:\\&w=([0-9]+))?(?:\\&h=([0-9]+))?/"
+                           , $conf, $match))
+                {
+                    $data['id'] = $match[1];
+                    $data['width'] = $match[2];
+                }
+                else
+                {
+                    preg_match(
+                             "/{$baseUrl}drawings\\/[a-z]+\\?id=([a-zA-Z\\-_0-9]+)(?:&w=([0-9]+))?/"
+                            , $conf, $match);
 
-		$data['id'] = $match[1];
-		$data['width'] = $match[2];
+                    $data['id'] = $match[1];
+                    $data['width'] = $match[2];
+                }
 	} 
 	if($data['width'] == 0 && $data['height'] == 0)
 	{
@@ -132,4 +144,3 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
         return true;
     }
 }
-
