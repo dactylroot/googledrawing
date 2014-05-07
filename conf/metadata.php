@@ -7,4 +7,5 @@
 
 
 $meta['googleUrl'] = array('string');
-
+$meta['defaultImageWidth'] = array('numeric');
+$meta['defaultImageHeight'] = array('numeric');
