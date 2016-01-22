@@ -62,7 +62,7 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
     }
 
 
-    public function handle($match, $state, $pos, &$handler){
+    public function handle($match, $state, $pos, Doku_Handler $handler){
 
         $data = array(
                      'id'  => '1EJyBXdSdnJ1mi6h371GXWdL0lz0Oj0lO9vcq_burdfs',
@@ -110,7 +110,7 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
     }
 
     // TODO: Clean up the image tag generated in this function
-    public function render($mode, &$renderer, $data) {
+    public function render($mode, Doku_Renderer $renderer, $data) {
         if($mode != 'xhtml') return false;
 
         $baseUrl = $this->getGoogleUrl();
