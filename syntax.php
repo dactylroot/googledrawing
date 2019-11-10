@@ -116,16 +116,16 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
         $baseUrl = $this->getGoogleUrl();
         $imageUrl = $this->getImageUrl($data['id']);
         $tag = '<img';
-        $url = ' src="' . $baseUrl . 'drawings/pub?id=' . $data['id'];
+        $url = ' src="' . $baseUrl . 'drawings/d/' . $data['id'] . "/export/png";
         if($data['width'] > 0)
         {
-            $url .= '&w=' . $data['width'];
+            //$url .= '&w=' . $data['width'];
             $tag .= ' width="' . $data['width'] . '"';
         }
 
         if($data['height'] > 0)
         {
-            $url .= '&h=' . $data['height'];
+            //$url .= '&h=' . $data['height'];
             $tag .= ' height="' . $data['height'] . '"';
         }
 
