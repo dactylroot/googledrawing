@@ -61,7 +61,6 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
                         'plugin_googledrawing');
     }
 
-
     public function handle($match, $state, $pos, Doku_Handler $handler){
 
         $data = array(
@@ -116,16 +115,14 @@ class syntax_plugin_googledrawing extends DokuWiki_Syntax_Plugin {
         $baseUrl = $this->getGoogleUrl();
         $imageUrl = $this->getImageUrl($data['id']);
         $tag = '<img';
-        $url = ' src="' . $baseUrl . 'drawings/d/' . $data['id'] . "/export/png";
+		$url = ' src="' . $baseUrl . 'drawings/d/' . $data['id'] . "/export/png";
         if($data['width'] > 0)
         {
-            //$url .= '&w=' . $data['width'];
             $tag .= ' width="' . $data['width'] . '"';
         }
 
         if($data['height'] > 0)
         {
-            //$url .= '&h=' . $data['height'];
             $tag .= ' height="' . $data['height'] . '"';
         }
 
